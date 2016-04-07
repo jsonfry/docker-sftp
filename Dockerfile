@@ -6,4 +6,6 @@ RUN adduser -D sftp &&\
 RUN mkdir /etc/dropbear
 RUN apk add --update openssh-sftp-server dropbear &&\
     rm -rf /var/cache/apk/*
+ADD docker-entrypoint.sh /
+ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["dropbear", "-RFEBmw", "-p", "22"]
